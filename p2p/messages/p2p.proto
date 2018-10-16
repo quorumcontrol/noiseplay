@@ -17,13 +17,22 @@ option (gogoproto.verbose_equal_all) = true;
 option (gogoproto.populate_all) = true;
 option (gogoproto.testgen_all) = true;
 
-message ID {
-    bytes public_key = 1;
-    string address = 2;
-    bytes id = 3;
-}
+// message ID {
+//     bytes public_key = 1;
+//     string address = 2;
+//     bytes id = 3;
+// }
 
 message ProxyMessage {
-    string message = 1;
-    ID destination = 2;
+    bytes payload = 1;
+    // ID destination = 2;
+    bytes signature = 3;
+    int32 sent = 4;
+    int32 ttl = 5;
+    bytes source = 6;
+    bytes destination = 7;
+    bytes topic = 8;
+    bytes sym_key_hash = 9;
+    bytes envelope_hash = 10;
+    uint64 envelope_version = 11;
 }

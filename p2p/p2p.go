@@ -13,7 +13,7 @@ import (
 )
 
 func RunP2P() error {
-	protocol := "tcp"
+	protocol := "kcp"
 	host := "0.0.0.0"
 
 	numNodes := 5
@@ -29,7 +29,7 @@ func RunP2P() error {
 
 		builder := network.NewBuilder()
 		builder.SetKeys(keys)
-		builder.SetAddress(network.FormatAddress(protocol, host, port+uint16(i)))
+		builder.SetAddress(network.FormatAddress(protocol, host, port))
 
 		// Register NAT traversal plugin.
 		// nat.RegisterPlugin(builder)

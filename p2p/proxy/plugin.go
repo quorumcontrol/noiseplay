@@ -1,6 +1,8 @@
 package proxy
 
 import (
+	"time"
+
 	"github.com/perlin-network/noise/dht"
 	"github.com/perlin-network/noise/log"
 	"github.com/perlin-network/noise/network"
@@ -78,27 +80,38 @@ func (n *ProxyPlugin) ProxyBroadcast(node *network.Network, sender peer.ID, msg 
 		return nil
 	}
 
-	// Find the 2 closest peers from a nodes point of view (might include us).
-	closestPeers := routes.FindClosestPeers(targetID, 2)
+	// Find the 4 closest peers from a nodes point of view (might include us).
+	closestPeers := routes.FindClosestPeers(targetID, 4)
 	log.Info().Msgf("%s found closest peers (before edit): %v", node.Address, closestPeers)
 
-	// Remove sender and self from the list.
+	// Remove sender from the list.
 	for i, id := range closestPeers {
 		log.Info().Msgf("%s - id: %s, node id: %s", node.Address, id.Address, node.ID.Address)
-		if id.Equals(sender) || id.Equals(node.ID) {
+		if id.Equals(sender) {
 			closestPeers = append(closestPeers[:i], closestPeers[i+1:]...)
 			break
 		}
 	}
-
-	// Seems we have ran out of peers to attempt to propagate to.
-	if len(closestPeers) == 0 {
-		return errors.Errorf("could not found route from node %s to node %s", node.ID, targetID)
-	}
 	log.Info().Msgf("%s found closest peers (after edit): %v", node.Address, closestPeers)
 
+	switch len(closestPeers) {
+	case 0:
+		return errors.Errorf("could not found route from node %s to node %s", node.ID, targetID)
+	case 1:
+		// if the closest peer is us but we haven't yet bootstrapped to find the destination,
+		// keep retrying ourself.
+		if node.ID.Equals(closestPeers[0]) {
+			go func(n *ProxyPlugin, node *network.Network, sender peer.ID, msg *messages.ProxyMessage) {
+				time.Sleep(1 * time.Second)
+				n.ProxyBroadcast(node, sender, msg)
+			}(n, node, sender, msg)
+			return nil
+		}
+	}
+
 	// Propagate message to the closest peer.
-	log.Info().Msgf("%s sending to: %s", node.Address, closestPeers[0].Address)
-	node.BroadcastByIDs(msg, closestPeers[0])
+	log.Info().Msgf("%s sending to: %v", node.Address, closestPeers)
+	node.BroadcastByIDs(msg, closestPeers...)
+
 	return nil
 }

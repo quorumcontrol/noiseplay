@@ -15,12 +15,10 @@ import (
 // ProxyPlugin buffers all messages into a mailbox for this test.
 type ProxyPlugin struct {
 	*network.Plugin
-	Mailbox chan *messages.ProxyMessage
 }
 
 func (n *ProxyPlugin) Startup(net *network.Network) {
-	// Create mailbox.
-	n.Mailbox = make(chan *messages.ProxyMessage, 1)
+	// nil
 }
 
 // Handle implements the network interface callback
@@ -86,7 +84,6 @@ func (n *ProxyPlugin) ProxyBroadcast(node *network.Network, sender peer.ID, msg 
 
 	// Remove sender from the list.
 	for i, id := range closestPeers {
-		log.Info().Msgf("%s - id: %s, node id: %s", node.Address, id.Address, node.ID.Address)
 		if id.Equals(sender) {
 			closestPeers = append(closestPeers[:i], closestPeers[i+1:]...)
 			break

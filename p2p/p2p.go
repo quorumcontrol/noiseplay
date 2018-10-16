@@ -16,20 +16,20 @@ func RunP2P() error {
 	protocol := "kcp"
 	host := "0.0.0.0"
 
-	numNodes := 5
+	numNodes := 20
 	sender := 0
 	target := numNodes - 1
 
 	nodes := make([]*network.Network, numNodes)
+	port := 10000
 
 	for i := 0; i < numNodes; i++ {
-		port := uint16(network.GetRandomUnusedPort())
 
 		keys := ed25519.RandomKeyPair()
 
 		builder := network.NewBuilder()
 		builder.SetKeys(keys)
-		builder.SetAddress(network.FormatAddress(protocol, host, port))
+		builder.SetAddress(network.FormatAddress(protocol, host, uint16(port+i)))
 
 		// Register NAT traversal plugin.
 		// nat.RegisterPlugin(builder)

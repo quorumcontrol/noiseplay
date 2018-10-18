@@ -14,7 +14,7 @@ import (
 
 func RunP2P() error {
 	protocol := "kcp"
-	host := "0.0.0.0"
+	host := "127.0.0.1"
 
 	numNodes := 20
 	sender := 0

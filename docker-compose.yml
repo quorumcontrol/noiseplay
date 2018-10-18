@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  server:
+    build: .
+    ports: 
+      - 10000
+    command: ["/usr/local/go/bin/go", "run", "natter/natter.go"]
+  client:
+    build: .
+    command: ["/usr/local/go/bin/go", "run", "natter/natter.go", "-s", "server"]

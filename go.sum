@@ -25,6 +25,8 @@ github.com/perlin-network/noise v1.1.0 h1:jvFmgOXwB5VqC8iu9zX+GjGjPEMKPKfhcHmHnC
 github.com/perlin-network/noise v1.1.0/go.mod h1:QCORppHESoRRJ4FOhcpg30nbr1wachSOv5BZ1SRcRhE=
 github.com/perlin-network/noise v1.1.1-0.20180919211059-35d0d411da2a h1:iSx+TEAAqnKWCoQFVMrZxMslg6H3S0v7oaciQI+iBlM=
 github.com/perlin-network/noise v1.1.1-0.20180919211059-35d0d411da2a/go.mod h1:FWlPuoPtW6heTWr92VFBfcC/VBStKE7wojvtHbKmIFc=
+github.com/perlin-network/noise v1.1.1-0.20181016155300-e83afc330dff h1:CkUJDAICByvP16sVd/ohpe4fjT6+k6ox13p0DxPLwhc=
+github.com/perlin-network/noise v1.1.1-0.20181016155300-e83afc330dff/go.mod h1:AcrGkd3xrP8RVGHjZER5yjM9XEGaGQcUluPoCOBxiK4=
 github.com/pkg/errors v0.8.0 h1:WdK/asTD0HN+q6hsWO3/vpuAkAr+tw6aNJNDFFf0+qw=
 github.com/pkg/errors v0.8.0/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
@@ -51,6 +53,8 @@ golang.org/x/net v0.0.0-20180712202826-d0887baf81f4 h1:KDF3PK6A+dkI7c4O8QbMtJqcX
 golang.org/x/net v0.0.0-20180712202826-d0887baf81f4/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/sys v0.0.0-20180919162611-1561086e645b h1:AnKkq1vWZRACfUpS3PTWIN1eRYErnwW+iPP47aL3+MM=
 golang.org/x/sys v0.0.0-20180919162611-1561086e645b/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
+golang.org/x/sys v0.0.0-20181011152604-fa43e7bc11ba h1:nZJIJPGow0Kf9bU9QTc1U6OXbs/7Hu4e+cNv+hxH+Zc=
+golang.org/x/sys v0.0.0-20181011152604-fa43e7bc11ba/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/text v0.3.0 h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/vgo v0.0.0-20180912184537-9d567625acf4 h1:ouUW0k6XvH360Tr2/HkzQWY7/aU+3QVkfWnrRNf2udQ=

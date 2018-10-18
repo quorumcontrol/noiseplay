@@ -48,7 +48,7 @@ func main() {
 		log.Info().Msgf("server address: %s, id: %s", node.Address, base64.URLEncoding.EncodeToString(node.ID.Id))
 		node.Listen()
 	} else {
-		builder.SetAddress(network.FormatAddress(protocol, "unreachable", uint16(port+1)))
+		builder.SetAddress(network.FormatAddress(protocol, host, uint16(port+1)))
 
 		node, err := builder.Build()
 		if err != nil {
